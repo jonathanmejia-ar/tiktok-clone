@@ -19,6 +19,10 @@ import Videos from './components/Videos';
 import VideosForm from './components/VideosForm';
 import VideoShow from './components/VideoShow';
 import Profile from './components/Profile';
+import Home from './Home';
+import { ThemeProvider } from 'styled-components';
+import theme from './theme';
+import Layout from './components/Layout';
 
 const NotImplemented = () => {
   return (
@@ -64,25 +68,29 @@ function App() {
     <Router>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <Layout>
 
-          <Routes>
-            <Route path="/" element={<NotImplemented />} />
+              <Routes>
+                <Route path="/" element={<Home />} />
 
-            <Route path="/users" element={<UsersOutlet />}>
-              <Route path="/register" element={<NotImplemented />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/:id/videos" element={<NotImplemented />} />
-            </Route>
+                <Route path="/users" element={<UsersOutlet />}>
+                  <Route path="/register" element={<NotImplemented />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/:id/videos" element={<NotImplemented />} />
+                </Route>
 
-            <Route path="/videos">
-              <Route path="/" element={<Videos />} />
-              <Route path="/new" element={<VideosForm />} />
-              <Route path="/:id" element={<VideoShow />} />
-            </Route>
+                <Route path="/videos">
+                  <Route path="/" element={<Videos />} />
+                  <Route path="/new" element={<VideosForm />} />
+                  <Route path="/:id" element={<VideoShow />} />
+                </Route>
 
-            <Route path="*" element={<Error404 />} />
-          </Routes>
+                <Route path="*" element={<Error404 />} />
+              </Routes>
+            </Layout>
+          </ThemeProvider>
         </PersistGate>
       </Provider>
     </Router>
