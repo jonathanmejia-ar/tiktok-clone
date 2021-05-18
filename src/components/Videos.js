@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { loadVideos } from '../store/videos';
 
 const Videos = () => {
-    let videosState = useSelector(state => state.videos);
-    let dispatch = useDispatch();
+    const videosState = useSelector(state => state.videos);
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(
             loadVideos()

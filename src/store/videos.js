@@ -21,6 +21,22 @@ export const loadVideos = createAsyncThunk('videos/load', async (page = 1, thunk
     return response.data;
 });
 
+export const createVideo = createAsyncThunk('videos/create', async (videoData, thunkAPI) => {
+    let token;
+    try {
+        token = thunkAPI.getState().user.user.jwtToken;
+    } catch {
+        return Promise.reject('Unauthorized')
+    }
+    if (!token) return Promise.reject('Unauthorized');
+    let response = await Axios.post(`${apiConfig.domain}/videos`, videoData, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    return response.data;
+});
+
 let videosSlice = createSlice({
     name: 'videos',
     initialState: {

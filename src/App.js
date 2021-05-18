@@ -4,7 +4,6 @@ import {
   Routes,
   Link,
   Outlet,
-  useParams,
   useNavigate
 } from 'react-router-dom';
 import {
@@ -17,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from './store/user';
 import { PersistGate } from 'redux-persist/integration/react';
 import Videos from './components/Videos';
+import VideosForm from './components/VideosForm';
 
 const NotImplemented = () => {
   return (
@@ -57,14 +57,7 @@ const UsersOutlet = () => {
   )
 };
 
-const VideoShow = () => {
-  const { id } = useParams();
-  console.log(useParams());
-  return (<p>{id}</p>);
-}
-
 function App() {
-
   return (
     <Router>
       <Provider store={store}>
@@ -82,8 +75,8 @@ function App() {
 
             <Route path="/videos">
               <Route path="/" element={<Videos />} />
-              <Route path="/new" element={<NotImplemented />} />
-              <Route path="/:id" element={<VideoShow />} />
+              <Route path="/new" element={<VideosForm />} />
+              <Route path="/:id" element={<NotImplemented />} />
             </Route>
 
             <Route path="*" element={<Error404 />} />
