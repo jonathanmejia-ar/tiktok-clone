@@ -9,10 +9,12 @@ import {
 import storage from 'redux-persist/lib/storage';
 import userReducer from './user';
 import videosReducer from './videos';
+import likeReducer from './likes'
 
 const reducer = combineReducers({
     user: userReducer,
-    videos: videosReducer
+    videos: videosReducer,
+    like: likeReducer
 });
 
 const persistConfig = {
