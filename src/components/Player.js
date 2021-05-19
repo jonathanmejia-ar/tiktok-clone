@@ -1,5 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { PlayerSdk } from '@api.video/player-sdk';
+import styled from 'styled-components';
+
+const Iframe = styled.iframe`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+`;
 
 const Player = ({ video }) => {
     let player = useRef(null);
@@ -15,7 +24,7 @@ const Player = ({ video }) => {
 
     return (
         <div>
-            <iframe
+            <Iframe
                 title={video.title}
                 width="100%"
                 height="100%"
@@ -24,7 +33,7 @@ const Player = ({ video }) => {
                 allowFullScreen={true}
                 src={`https://embed.api.video/vod/${video.remoteVideoId}`}
                 frameBorder="0"
-            ></iframe>
+            ></Iframe>
         </div>
     )
 }

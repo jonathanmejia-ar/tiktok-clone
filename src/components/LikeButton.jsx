@@ -13,7 +13,7 @@ const LikeButton = ({ video }) => {
   return (
     <ClearButton onClick={() => handleLike(video.id)}>
       <SvgButton
-        src="./icons/heart.svg"
+        src="/icons/heart.svg"
         active={video.isLikedByCurrentUser}
       ></SvgButton>
     </ClearButton>
