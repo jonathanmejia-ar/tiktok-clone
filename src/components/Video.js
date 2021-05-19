@@ -36,9 +36,9 @@ const VideoContainer = styled.div`
   }
 `;
 
-const Video = ({ video }) => {
+const Video = ({ video, style }) => {
     return (
-        <VideoContainer >
+        <VideoContainer style={style}>
             <div className="info">
                 <aside className="sidebar">
                     <LikeButton video={video} />

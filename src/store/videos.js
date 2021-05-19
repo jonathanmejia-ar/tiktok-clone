@@ -21,8 +21,28 @@ let innerLoadVideos = async (path, thunkAPI) => {
     return response.data;
 }
 
-export const loadVideos = createAsyncThunk('videos/load', async (page = 1, thunkAPI) => {
-    return innerLoadVideos(`videos?page=${page}`, thunkAPI);
+export const loadVideos = createAsyncThunk('videos/load', async (args, thunkAPI) => {
+    let token, page;
+    try {
+        token = thunkAPI.getState().user.user.jwtToken;
+    } catch {
+        return Promise.reject('Invalid token')
+    }
+
+    if (!token) return Promise.reject('Invalid token');
+
+    try {
+        page = thunkAPI.getState().videos.data.nextPage;
+    } catch {
+        page = 1
+    }
+
+    let response = await Axios.get(`${apiConfig.domain}/videos?page=${page}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    return response.data;
 });
 
 export const loadVideosForUser = createAsyncThunk('videos/user/load', async (args, thunkAPI) => {
