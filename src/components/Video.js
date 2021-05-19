@@ -36,12 +36,12 @@ const VideoContainer = styled.div`
   }
 `;
 
-const Video = ({ index, video, handleLike }) => {
+const Video = ({ video }) => {
     return (
-        <VideoContainer key={index}>
+        <VideoContainer >
             <div className="info">
                 <aside className="sidebar">
-                    <LikeButton video={video} handleLike={handleLike} />
+                    <LikeButton video={video} />
                     <ShareButton />
                 </aside>
                 <div className="user-info">

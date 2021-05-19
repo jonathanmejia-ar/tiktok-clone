@@ -1,5 +1,5 @@
 import { ReactSVG } from "react-svg";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const theme = {
     colors: {
@@ -51,6 +51,12 @@ const theme = {
 
 export default theme;
 
+export const GlobalStyles = createGlobalStyle`
+    *{
+        box-sizing: border-box;
+    }
+`;
+
 export const LayoutContainer = styled.div`
     display: grid;
     min-height: 100vh;
@@ -61,6 +67,14 @@ export const SmallContainer = styled.div`
     width: ${({ theme }) => theme.dims.widths.small};
     max-width: 100vw;
     margin: 0 auto;
+`;
+
+export const CenteredContainer = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    height:100%;
+    width:100%;
 `;
 
 export const ClearButton = styled.button`
@@ -102,4 +116,25 @@ export const Title = styled.h1`
     margin-block-end: 0;
     margin-left: ${({ theme }) => theme.dims.margin.intersection};
     vertical-align: middle;
+`;
+
+export const AppButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.accent};
+  border-radius: ${({ theme }) => theme.dims.borderRadius.normal};
+  padding: ${({ theme }) => theme.dims.padding.largePadding};
+  box-shadow: ${({ theme }) => theme.shadows.depth1};
+  margin-top: ${({ theme }) => theme.dims.margin.normal};
+  font-size: 1em;
+  color: ${({ theme }) => theme.colors.white};
+  width: ${({ fullWidth, small, theme }) => {
+        if (fullWidth) return '100%';
+        if (small) return theme.dims.widths.forms
+        return 'auto'
+    }};
+  cursor: pointer;
+  border: none;
+  &:hover{
+    opacity:0.8;
+    box-shadow: ${({ theme }) => theme.shadows.depth2};
+  }
 `;

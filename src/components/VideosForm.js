@@ -1,7 +1,14 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { createVideo } from '../store/videos';
+import { AppButton, CenteredContainer, SmallContainer as SmallContainerTemplate } from '../theme';
+import AppInput, { Fieldset } from './AppInput';
+
+const SmallContainer = styled(SmallContainerTemplate)`
+    text-align:center;
+`;
 
 const VideosForm = () => {
     const { register, handleSubmit } = useForm();
@@ -18,11 +25,18 @@ const VideosForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" name="title" {...register('title')} placeholder="title" />
-            <input type="file" name="video" {...register('video')} />
-            <input type="submit" value="Send" />
-        </form>
+        <CenteredContainer>
+            <SmallContainer>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <AppInput type="text" name="title" register={{ ...register('title') }} placeholder="title" />
+                    <Fieldset>
+                        <label>File video</label>
+                        <input type="file" name="video" register={{ ...register('video') }} />
+                    </Fieldset>
+                    <AppButton type="submit" small>Upload video</AppButton>
+                </form>
+            </SmallContainer>
+        </CenteredContainer>
     )
 }
 

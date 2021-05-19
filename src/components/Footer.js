@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
@@ -53,13 +54,35 @@ const FABButton = styled(Link)`
 
 `;
 
-const Footer = () => {
+const SimpleFooterContainer = styled.footer`
+    background-color: ${({ theme }) => theme.colors.gray};
+    padding: ${({ theme }) => theme.dims.padding.largePadding};
+    text-align:center;
+`;
+
+const LoggedInFooter = () => {
     return (
         <FooterContainer>
             <Link to="/videos">Home</Link>
             <FABButton to="/videos/new">+</FABButton>
             <Link to="/user/profile">Profile</Link>
-        </FooterContainer>
+        </FooterContainer>)
+};
+
+const LoggedOutFooter = () => {
+    return (
+        <SimpleFooterContainer>
+            <Routes>
+                <Route path="/users/login" element={<p>Don't have an account? <Link to="/users/register">Register</Link> </p>}></Route>
+                <Route path="/users/register" element={<p>Do you have an account? <Link to="/users/login">Login</Link> </p>}></Route>
+            </Routes>
+        </SimpleFooterContainer>)
+};
+
+const Footer = () => {
+    let user = useSelector(state => state.user.user);
+    return (
+        user ? <LoggedInFooter /> : <LoggedOutFooter />
     )
 };
 

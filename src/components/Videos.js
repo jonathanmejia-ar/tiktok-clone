@@ -19,7 +19,7 @@ const Videos = () => {
         <div>
             <SmallContainer>
                 {videosState.data.videos.map((video, index) => {
-                    return <Video video={video} index={index} />
+                    return <Video video={video} key={index} />
                 })}
             </SmallContainer>
         </div>

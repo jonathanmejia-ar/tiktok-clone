@@ -4,7 +4,7 @@ import { ClearButton, SvgButton } from "../theme";
 const ShareButton = () => {
   return (
     <ClearButton>
-      <SvgButton src="./icons/share.svg"></SvgButton>
+      <SvgButton src="/icons/share.svg"></SvgButton>
     </ClearButton>
   );
 };
