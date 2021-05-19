@@ -65,7 +65,7 @@ const LoggedInFooter = () => {
         <FooterContainer>
             <Link to="/videos">Home</Link>
             <FABButton to="/videos/new">+</FABButton>
-            <Link to="/user/profile">Profile</Link>
+            <Link to="/users/profile">Profile</Link>
         </FooterContainer>)
 };
 
